@@ -77,6 +77,7 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
 $headers .= "From: $fromAddress" . "\r\n";
 $headers .= "Reply-To: $email" . "\r\n";
+$headers .= "Cc: contato@pizzariapaulista.com.br" . "\r\n";
 
 // Tentar enviar o email
 if (mail($to, $email_subject, $email_body, $headers)) {
