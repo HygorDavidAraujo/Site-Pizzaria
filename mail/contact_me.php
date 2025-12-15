@@ -41,11 +41,11 @@ if (strlen($message) < 10) {
     exit;
 }
 
-// Email de destino
+// Email de destino (caixa local; encaminhe via forwarder para o endereço externo desejado)
 $to = 'pizzariapaulista@pizzariapaulista.com.br';
 
-// Endereço de origem (deve ser do mesmo domínio para evitar bloqueios)
-$fromAddress = 'pizzariapaulista@pizzariapaulista.com.br';
+// Remetente padrão (noreply para evitar respostas diretas)
+$fromAddress = 'noreply@pizzariapaulista.com.br';
 
 // Assunto do email
 $email_subject = "Novo contato de $name - Assunto: $subject";
@@ -68,6 +68,8 @@ MENSAGEM:
 $message
 
 ================================
+
+Observação: este é um e-mail automático, por favor não responda diretamente. Utilize o e-mail do cliente para retorno.
 EOT;
 
 // Headers do email
@@ -95,6 +97,8 @@ Detalhes:
 
 Att,
 Pizzaria Paulista
+
+Observação: este é um e-mail automático, por favor não responda diretamente. Caso precise, envie um novo e-mail para contato@pizzariapaulista.com.br.
 EOT;
 
     $user_headers = "MIME-Version: 1.0" . "\r\n";
