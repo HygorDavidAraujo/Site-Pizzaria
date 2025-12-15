@@ -42,7 +42,7 @@ if (strlen($message) < 10) {
 }
 
 // Email de destino
-$to = 'contato@pizzariapaulista.com.br';
+$to = 'pizzariapaulista@pizzariapaulista.com.br';
 
 // Assunto do email
 $email_subject = "Novo contato de $name - Assunto: $subject";
