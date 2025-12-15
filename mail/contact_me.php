@@ -44,6 +44,9 @@ if (strlen($message) < 10) {
 // Email de destino
 $to = 'pizzariapaulista@pizzariapaulista.com.br';
 
+// Endereço de origem (deve ser do mesmo domínio para evitar bloqueios)
+$fromAddress = 'pizzariapaulista@pizzariapaulista.com.br';
+
 // Assunto do email
 $email_subject = "Novo contato de $name - Assunto: $subject";
 
@@ -70,13 +73,15 @@ EOT;
 // Headers do email
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
-$headers .= "From: noreply@pizzariapaulista.com.br" . "\r\n";
+$headers .= "From: $fromAddress" . "\r\n";
 $headers .= "Reply-To: $email" . "\r\n";
 
 // Tentar enviar o email
 if (mail($to, $email_subject, $email_body, $headers)) {
     // Enviar também confirmação para o usuário
     $user_subject = "Recebemos sua mensagem - Pizzaria Paulista";
+    $now = date('d/m/Y H:i:s');
+
     $user_body = <<<EOT
 Olá $name,
 
@@ -86,7 +91,7 @@ Recebemos sua mensagem e entraremos em contato em breve.
 
 Detalhes:
 - Assunto: $subject
-- Data: " . date('d/m/Y H:i:s') . "
+- Data: $now
 
 Att,
 Pizzaria Paulista
