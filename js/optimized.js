@@ -397,6 +397,8 @@ if (document.getElementById('popup')) {
 }
 
 // ===== SERVICE WORKER PARA CACHE (OPCIONAL) =====
+// Desabilitado temporariamente até que sw.js esteja no servidor
+/*
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
@@ -408,6 +410,7 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+*/
 
 // ===== ERROR HANDLING =====
 window.addEventListener('error', (e) => {
