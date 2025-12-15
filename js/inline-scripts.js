@@ -322,4 +322,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Run once on load
     updateCopyrightYear();
+
+    /* ===== FORMULÁRIO DE CONTATO ===== */
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Pegar dados do formulário
+        const formData = new FormData(this);
+        const messageDiv = document.getElementById('form-message');
+        const submitBtn = this.querySelector('.form-submit');
+        
+        // Desabilitar botão durante envio
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        // Fazer requisição AJAX
+        fetch('mail/contact_me.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          messageDiv.style.display = 'block';
+          
+          if (data.success) {
+            messageDiv.className = 'form-message success';
+            messageDiv.textContent = data.message;
+            contactForm.reset();
+            
+            // Limpar mensagem após 5 segundos
+            setTimeout(() => {
+              messageDiv.style.display = 'none';
+            }, 5000);
+          } else {
+            messageDiv.className = 'form-message error';
+            messageDiv.textContent = data.message || 'Erro ao enviar mensagem';
+          }
+
+          // Reabilitar botão
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar Mensagem';
+        })
+        .catch(error => {
+          messageDiv.style.display = 'block';
+          messageDiv.className = 'form-message error';
+          messageDiv.textContent = 'Erro na conexão: ' + error.message;
+          
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar Mensagem';
+        });
+      });
+    }
 });
