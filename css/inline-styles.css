@@ -1,0 +1,414 @@
+/* Estilos para o pop-up */
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  width: 90vw;
+  /* 90% da largura da viewport */
+  max-width: 500px;
+  /* largura máxima */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
+  background-color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+#popup img {
+  width: 100%;
+  height: auto;
+}
+
+/* Estilos para o botão de carregar mapa */
+#map-placeholder {
+  width: 100%;
+  height: 450px;
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+#load-map-btn {
+  padding: 12px 24px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#load-map-btn:hover {
+  opacity: 0.9;
+}
+
+#load-map-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#google-map-iframe {
+  border: 0;
+  width: 100%;
+  display: none;
+}
+
+/* Estilos para container de parceiros */
+.partners-image-container {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.partners-image-container img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos para o sistema de categorias com sliders do cardápio */
+.categories-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.categories-container h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.4em;
+  text-align: center;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+}
+
+.category-slider-section {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.category-slider-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.category-title {
+  margin: 0 0 12px 0;
+  color: var(--primary-color);
+  font-size: 1.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.category-slider {
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.slider-image-container {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: white;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.slider-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.slider-btn:hover {
+  background: #d32f2f;
+}
+
+.slider-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.slide-info {
+  flex: 1;
+  text-align: center;
+}
+
+.slide-counter {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .categories-container {
+    padding: 15px;
+  }
+
+  .slider-image-container {
+    height: 130px;
+  }
+
+  .slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-image-container {
+    height: 120px;
+  }
+
+  .slider-controls {
+    gap: 5px;
+  }
+
+  .slider-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* Estilos para o visualizador de cardápio (PDF) */
+.cardapio-object-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.cardapio-object-container h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.cardapio-embed-wrapper {
+  width: 100%;
+  height: 2160px;
+  max-height: 300vh;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.cardapio-embed-wrapper object,
+.cardapio-embed-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.cardapio-embed-note {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .cardapio-embed-wrapper {
+    height: 56vh;
+  }
+}
+
+/* Layout para colunas do cardápio: PDF (70%) à esquerda e slides (30%) à direita */
+.cardapio-layout .container>.row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cardapio-layout .container>.row>.cardapio-left {
+  box-sizing: border-box;
+  /* Prefer a wider PDF viewer area on desktop: ~70% */
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+
+.cardapio-layout .container>.row>.cardapio-right {
+  box-sizing: border-box;
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+/* Ajuste quando a grade antiga span* estiver presente: garantir que span classes não adicionem larguras conflitantes */
+.cardapio-left,
+.cardapio-right {
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .cardapio-layout .container>.row {
+    flex-direction: column;
+  }
+
+  .cardapio-left,
+  .cardapio-right {
+    max-width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .cardapio-embed-wrapper {
+    height: 56vh;
+  }
+}
+
+/* Forçar sinais < e > nos controles do carrossel de depoimentos */
+.carouselle.owl-carousel .owl-prev::before,
+.carouselle.owl-carousel .owl-next::before {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.carouselle.owl-carousel .owl-prev::before { content: "<"; }
+.carouselle.owl-carousel .owl-next::before { content: ">"; }
+
+/* Remover qualquer texto interno duplicado e deixar apenas o pseudo-elemento visível */
+.carouselle.owl-carousel .owl-prev,
+.carouselle.owl-carousel .owl-next {
+  position: relative;
+}
+.carouselle.owl-carousel .owl-prev > *,
+.carouselle.owl-carousel .owl-next > * {
+  display: none !important;
+}
+
+/* Ajustes de alinhamento se necessário */
+.carouselle.owl-carousel .owl-prev,
+.carouselle.owl-carousel .owl-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.carouselle.owl-carousel .owl-prev:hover,
+.carouselle.owl-carousel .owl-next:hover {
+  transform: scale(1.05);
+}
+
+/* PDF.js viewer styles (scoped) */
+.pdfjs-wrapper .pdf-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  z-index: 2;
+}
+
+.pdfjs-wrapper .pdf-controls button,
+.pdfjs-wrapper .pdf-controls a.button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pdfjs-wrapper .pdf-controls button[aria-label] {
+  min-width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.pdfjs-wrapper #pdf-canvas {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.pdfjs-wrapper .pdf-canvas-container {
+  width: 100%;
+  max-height: 78vh;
+  overflow: auto;
+}
+
+.pdfjs-wrapper .button {
+  background: #d9534f;
+  color: #fff;
+  padding: 6px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}

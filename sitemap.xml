@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/index.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/cardapio.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/contato.html</loc>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/pizzaria.html</loc>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.pizzariapaulista.com.br/parceiros.html</loc>
+    <priority>0.64</priority>
+  </url>
+</urlset>
