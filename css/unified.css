@@ -146,7 +146,7 @@ body {
   padding: 0 15px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
 }
 
@@ -196,7 +196,7 @@ body {
 
 .head_right {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 15px;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -336,9 +336,9 @@ body {
 /* ===== TÍTULOS E BREADCRUMBS ===== */
 .main_title {
   background: var(--bg-light);
-  padding: 80px 0 40px;
+  padding: 40px 0 40px;
   text-align: center;
-  margin-top: 350px;
+  margin-top: 300px;
 }
 
 .main_title h1 {
@@ -892,6 +892,36 @@ body {
   .row {
     flex-wrap: wrap;
     justify-content: flex-start;
+  }
+
+  /* PDF viewer: center and use 95% of viewport width on mobile
+     minus container padding (15px left + 15px right) */
+  .pdf-canvas-container {
+    width: calc(95vw - 30px);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Avoid internal scrollbars on mobile */
+  .pdfjs-wrapper,
+  .pdf-canvas-container {
+    overflow: hidden;
+  }
+  .pdf-canvas-container canvas {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Cardápio layout responsivo */
+  .span8.cardapio-left {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cardapio-right {
+    width: 100%;
+    margin-top: 30px;
   }
 
   .container {
@@ -1833,4 +1863,19 @@ html.dark-mode .form-message.error {
   .form-reset {
     width: 100%;
   }
+}
+
+/* PDF viewer: center on larger screens */
+.pdf-canvas-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.pdf-canvas-container canvas {
+  display: block;
+  margin: 0 auto;
+}
+/* Avoid internal scrollbars globally */
+.pdfjs-wrapper,
+.pdf-canvas-container {
+  overflow: hidden;
 }

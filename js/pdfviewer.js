@@ -21,17 +21,32 @@
       if (!pdfDoc) return;
       pdfDoc.getPage(num).then(function (page) {
         try {
-          // Determine container width so we can compute a scale that fits horizontally
+          // Determine container width/height to compute a scale that fits both dimensions
           const container = document.querySelector('.pdf-canvas-container') || document.getElementById('pdf-viewer-wrapper');
-          const containerWidth = container ? container.clientWidth : Math.min(window.innerWidth, 1000);
+          let containerWidth = container ? container.clientWidth : Math.min(window.innerWidth, 1200);
+          const isMobile = window.matchMedia('(max-width: 768px)').matches;
+          if (isMobile) {
+            // Ensure ~95% viewport width on mobile, minus container horizontal padding (~30px)
+            const vw = (window.innerWidth || containerWidth);
+            containerWidth = Math.max(220, Math.floor(vw * 0.95) - 30);
+          }
+          // Available height: keep canvas within the viewport to avoid scrollbars
+          const vh = (window.innerHeight || 800);
+          const paddingY = 24; // small breathing room to avoid accidental overflow
+          const availableHeight = Math.max(
+            300,
+            Math.floor(vh * (isMobile ? 0.8 : 0.9)) - paddingY
+          );
 
-          // Get the page at scale=1 to learn the intrinsic width
+          // Get the page at scale=1 to learn intrinsic dimensions
           const unscaledViewport = page.getViewport({ scale: 1 });
 
-          // targetScale will make the PDF page's CSS width equal container width, multiplied by userScale
-          let targetScale = (containerWidth / unscaledViewport.width) * userScale;
+          // Compute scales for width and height, choose the smaller to avoid cropping
+          const scaleForWidth = containerWidth / unscaledViewport.width;
+          const scaleForHeight = availableHeight / unscaledViewport.height;
+          let targetScale = Math.min(scaleForWidth, scaleForHeight) * userScale;
           // clamp to reasonable bounds
-          targetScale = Math.max(0.5, Math.min(3, targetScale));
+          targetScale = Math.max(0.3, Math.min(3, targetScale));
 
           const viewport = page.getViewport({ scale: targetScale });
 
@@ -99,8 +114,9 @@
 
     function initPdf() {
       try {
+        // Disable worker to avoid CORS issues (works fine for small PDFs like menus)
         if (pdfjsLib && pdfjsLib.GlobalWorkerOptions) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist/build/pdf.worker.min.js';
+          pdfjsLib.GlobalWorkerOptions.workerSrc = false;
         }
 
         const loadingTask = pdfjsLib.getDocument(url);
@@ -123,7 +139,8 @@
               const iframe = document.createElement('iframe');
               iframe.src = url;
               iframe.width = '100%';
-              iframe.height = '600';
+              // Use viewport-relative height to avoid internal scrollbars
+              iframe.height = window.matchMedia('(max-width: 768px)').matches ? '80vh' : '90vh';
               iframe.title = 'Cardápio Pizzaria Paulista (PDF)';
               iframe.setAttribute('role', 'document');
               iframe.setAttribute('aria-label', 'Cardápio em PDF');
@@ -148,8 +165,9 @@
 
     function setWorkerSrcAndInit(useLocalWorker) {
       try {
+        // Disable worker to avoid CORS issues
         if (pdfjsLib && pdfjsLib.GlobalWorkerOptions) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = useLocalWorker ? LOCAL_WORKER : CDN_WORKER;
+          pdfjsLib.GlobalWorkerOptions.workerSrc = false;
         }
       } catch (e) {
         console.warn('Could not set pdfjs workerSrc:', e);
@@ -200,5 +218,13 @@
       // pdfjs already present on page
       setWorkerSrcAndInit(false);
     }
+
+    // Re-render on resize/orientation change to keep fit-to-viewport
+    function debounce(fn, wait){
+      let t; return function(){ clearTimeout(t); t = setTimeout(fn, wait); };
+    }
+    const rerender = debounce(function(){ queueRenderPage(pageNum); }, 150);
+    window.addEventListener('resize', rerender);
+    window.addEventListener('orientationchange', rerender);
   });
 })();
