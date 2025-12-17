@@ -889,6 +889,11 @@ body {
     width: 100%;
   }
 
+  .row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
   .container {
     padding: 0 15px;
   }
@@ -1038,6 +1043,11 @@ body {
 
   .random_img div {
     flex: 0 0 100%;
+  }
+
+  /* Move Qualidade block further down on mobile to improve spacing */
+  .quality-column {
+    margin-top: 24px;
   }
 }
 
