@@ -105,21 +105,15 @@
   <div id="fb-root"></div>
 
   <!-- Your Plugin de bate-papo code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
+  <div id="fb-customer-chat" class="fb-customerchat" page_id="500390160025121" attribution="biz_inbox">
   </div>
-
-  <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "500390160025121");
-    chatbox.setAttribute("attribution", "biz_inbox");
-  </script>
 
   <!-- Your SDK code -->
   <script>
     window.fbAsyncInit = function () {
       FB.init({
         xfbml: true,
-        version: 'v13.0'
+        version: 'v20.0'
       });
     };
 
