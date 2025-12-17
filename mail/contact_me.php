@@ -77,10 +77,15 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
 $headers .= "From: $fromAddress" . "\r\n";
 $headers .= "Reply-To: $email" . "\r\n";
-$headers .= "Cc: contato@pizzariapaulista.com.br" . "\r\n";
 
 // Tentar enviar o email
-if (mail($to, $email_subject, $email_body, $headers)) {
+$email_sent = mail($to, $email_subject, $email_body, $headers);
+
+// Enviar cópia para o Google Workspace (envio separado para evitar bloqueios)
+$to_workspace = 'contato@pizzariapaulista.com.br';
+mail($to_workspace, $email_subject, $email_body, $headers);
+
+if ($email_sent) {
     // Enviar também confirmação para o usuário
     $user_subject = "Recebemos sua mensagem - Pizzaria Paulista";
     $now = date('d/m/Y H:i:s');
