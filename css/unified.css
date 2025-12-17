@@ -1040,17 +1040,136 @@ body {
     padding: 20px;
   }
 
-  .carousel-item {
-    padding: 20px;
-    margin: 0 10px;
+  /* ===== CARROSSEL DE DEPOIMENTOS - MOBILE ===== */
+  .testimonials {
+    padding: 20px 0 !important;
+    margin: 20px 0 !important;
   }
 
-  .head_right {
-    gap: 8px;
+  .testimonials .title {
+    font-size: 1.2rem !important;
+    margin-bottom: 20px;
+  }
+
+  .carouselle.owl-carousel {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .carousel-item {
+    padding: 15px 10px !important;
+    margin: 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+  }
+
+  .carousel-item .xx_b p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 15px !important;
+  }
+
+  .carousel-item .t_author {
+    font-size: 1rem !important;
+    margin-top: 10px !important;
+  }
+
+  .carousel-item .t_occupation {
+    font-size: 0.8rem !important;
+  }
+
+  .owl-carousel .owl-nav {
+    position: static !important;
+    transform: none !important;
+    margin-top: 15px !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+  }
+
+  .owl-carousel .owl-prev,
+  .owl-carousel .owl-next {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .owl-carousel .owl-dots {
+    margin-top: 15px !important;
+  }
+
+  .owl-carousel .owl-dot {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 4px !important;
+  }
+
+  /* ===== IMAGENS - MOBILE ===== */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .img_holder {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  .img_holder img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .slider img,
+  .main_slider img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ===== FLEXSLIDER MOBILE ===== */
+  .flexslider {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .flex-viewport {
+    max-width: 100% !important;
+  }
+
+  /* ===== SLIDER ABAS (TABS) ===== */
+  .etabs {
+    flex-wrap: wrap;
   }
 
   .etabs li {
-    flex: 0 0 100%;
+    flex: 0 0 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  .tabcontent {
+    flex-direction: column !important;
+    padding: 15px !important;
+  }
+
+  .tabcontent > div {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  .img_holder {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  .content_holder {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  /* ===== HEADER - MOBILE ===== */
+  .head_right {
+    gap: 8px;
   }
 
   .social {
@@ -1064,16 +1183,58 @@ body {
 
   /* Extra small device refinements (360/375 widths common phones) */
   @media (max-width: 375px) {
-    .logo_wrap img { max-width: 140px; }
-    .main_title { padding: 60px 0 20px; }
-    .main_title h1 { font-size: 1.6rem; }
-    .head_right .book_online .button { padding: 8px 12px; font-size: 0.85rem; }
-    .pdfjs-wrapper .pdf-controls { gap: 6px; }
-    .pdfjs-wrapper .pdf-controls button[aria-label] { min-width: 34px; height: 34px; }
-    .testimonials .title { font-size: 1.2rem; }
-    .carousel-item { padding: 16px; }
-    .footer { padding: 24px 0; }
-    .nav_mobile ul { padding: 12px; }
+    .logo_wrap img {
+      max-width: 140px;
+    }
+
+    .main_title {
+      padding: 60px 0 20px;
+    }
+
+    .main_title h1 {
+      font-size: 1.6rem;
+    }
+
+    .head_right .book_online .button {
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+
+    .pdfjs-wrapper .pdf-controls {
+      gap: 6px;
+    }
+
+    .pdfjs-wrapper .pdf-controls button[aria-label] {
+      min-width: 34px;
+      height: 34px;
+    }
+
+    .testimonials .title {
+      font-size: 1.2rem;
+    }
+
+    .carousel-item {
+      padding: 12px 8px;
+    }
+
+    .footer {
+      padding: 24px 0;
+    }
+
+    .nav_mobile ul {
+      padding: 12px;
+    }
+
+    .carousel-item .xx_b p {
+      font-size: 0.9rem;
+    }
+
+    .owl-carousel .owl-prev,
+    .owl-carousel .owl-next {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 1rem !important;
+    }
   }
 }
 

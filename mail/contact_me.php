@@ -41,8 +41,8 @@ if (strlen($message) < 10) {
     exit;
 }
 
-// Email de destino (caixa local; encaminhe via forwarder para o endereço externo desejado)
-$to = 'pizzariapaulista@pizzariapaulista.com.br';
+// Email de destino - Google Workspace
+$to = 'contato@pizzariapaulista.com.br';
 
 // Remetente padrão (noreply para evitar respostas diretas)
 $fromAddress = 'noreply@pizzariapaulista.com.br';
@@ -79,13 +79,7 @@ $headers .= "From: $fromAddress" . "\r\n";
 $headers .= "Reply-To: $email" . "\r\n";
 
 // Tentar enviar o email
-$email_sent = mail($to, $email_subject, $email_body, $headers);
-
-// Enviar cópia para o Google Workspace (envio separado para evitar bloqueios)
-$to_workspace = 'contato@pizzariapaulista.com.br';
-mail($to_workspace, $email_subject, $email_body, $headers);
-
-if ($email_sent) {
+if (mail($to, $email_subject, $email_body, $headers)) {
     // Enviar também confirmação para o usuário
     $user_subject = "Recebemos sua mensagem - Pizzaria Paulista";
     $now = date('d/m/Y H:i:s');
@@ -97,9 +91,14 @@ Obrigado por entrar em contato conosco!
 
 Recebemos sua mensagem e entraremos em contato em breve.
 
-Detalhes:
-- Assunto: $subject
-- Data: $now
+Detalhes da sua solicitação:
+================================
+Assunto: $subject
+Data: $now
+
+Sua mensagem:
+$message
+================================
 
 Att,
 Pizzaria Paulista
