@@ -11,7 +11,6 @@ class PizzariaPaulista {
         this.initNavigation();
         this.initSlider();
         this.initTabs();
-        this.initTestimonials();
         this.initMobileMenu();
         this.initLazyLoading();
         this.initAccessibility();
@@ -428,17 +427,4 @@ if ('performance' in window) {
     });
 }
 
-// Accessibility: ensure owl carousel nav buttons have aria-labels for screen readers
-document.addEventListener('DOMContentLoaded', () => {
-    // Use a small timeout to let Owl Carousel initialize if it's being initialized on DOMContentLoaded
-    setTimeout(() => {
-        document.querySelectorAll('.carouselle.owl-carousel .owl-prev').forEach(btn => {
-            btn.setAttribute('aria-label', 'Anterior');
-            btn.setAttribute('title', 'Anterior');
-        });
-        document.querySelectorAll('.carouselle.owl-carousel .owl-next').forEach(btn => {
-            btn.setAttribute('aria-label', 'Próximo');
-            btn.setAttribute('title', 'Próximo');
-        });
-    }, 500);
-});
+// (Removed) Testimonials/Owl Carousel-specific accessibility hooks as testimonials were removed
